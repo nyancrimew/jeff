@@ -17,6 +17,7 @@ services:
       - 8080:8080
       - 6881:6881
       - 6881:6881/udp
+      - 1900:1900/udp
     restart: unless-stopped
 
   # movie piracy automation

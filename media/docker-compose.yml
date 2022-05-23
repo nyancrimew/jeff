@@ -1,0 +1,52 @@
+---
+version: "2.1"
+services:
+  # bittorrent client
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/Zurich
+      - WEBUI_PORT=8080
+    volumes:
+      - /var/media/config/qbt:/config
+      - /var/media/download:/downloads
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+
+  # movie piracy automation
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/Zurich
+    volumes:
+      - /var/media/config/radarr:/config
+      - /var/media/movies:/movies
+      - /var/media/download:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  # tv show piracy automation
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/Zurich
+    volumes:
+      - /var/media/config/sonarr:/config
+      - /var/media/tv:/tv
+      - /var/media/download:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped

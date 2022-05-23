@@ -52,3 +52,17 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
+
+    # indexer manager
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/Zurich
+    volumes:
+      - /var/media/config/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped

@@ -11,7 +11,7 @@ services:
       - TZ=Europe/Zurich
       - WEBUI_PORT=8080
     volumes:
-      - /var/media/config/qbt:/config
+      - /var/config/qbt:/config
       - /var/media/download:/downloads
     ports:
       - 8080:8080
@@ -30,7 +30,7 @@ services:
       - PGID=1001
       - TZ=Europe/Zurich
     volumes:
-      - /var/media/config/radarr:/config
+      - /var/config/radarr:/config
       - /var/media/movies:/movies
       - /var/media/download:/downloads
     ports:
@@ -46,7 +46,7 @@ services:
       - PGID=1001
       - TZ=Europe/Zurich
     volumes:
-      - /var/media/config/sonarr:/config
+      - /var/config/sonarr:/config
       - /var/media/tv:/tv
       - /var/media/download:/downloads
     ports:
@@ -62,7 +62,7 @@ services:
       - PGID=1001
       - TZ=Europe/Zurich
     volumes:
-      - /var/media/config/prowlarr:/config
+      - /var/config/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped

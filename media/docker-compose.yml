@@ -66,3 +66,18 @@ services:
     ports:
       - 9696:9696
     restart: unless-stopped
+  
+  # h5ai for the soundcloud like archive
+  sclikearchive:
+    image: awesometic/h5ai
+    container_name: sclikearchive
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Europe/Zurich
+    ports:
+      - 80:6969
+    volumes:
+      - /var/config/sclikearchive:/config
+      - /var/media/sclikearchive:/h5ai
+    restart: unless-stopped
